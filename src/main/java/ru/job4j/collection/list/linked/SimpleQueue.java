@@ -1,7 +1,5 @@
 package ru.job4j.collection.list.linked;
 
-import ru.job4j.collection.list.SimpleStack;
-
 import java.util.NoSuchElementException;
 
 public class SimpleQueue<T> {

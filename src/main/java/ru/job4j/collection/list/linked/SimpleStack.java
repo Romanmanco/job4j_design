@@ -1,4 +1,4 @@
-package ru.job4j.collection.list;
+package ru.job4j.collection.list.linked;
 
 import ru.job4j.collection.list.linked.ForwardLinked;
 

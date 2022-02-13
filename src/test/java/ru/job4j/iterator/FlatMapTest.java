@@ -1,9 +1,10 @@
-package ru.job4j.it;
+package ru.job4j.iterator;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import ru.job4j.iterator.FlatMap;
 
 import java.util.Iterator;
 import java.util.List;

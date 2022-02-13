@@ -1,4 +1,6 @@
-package ru.job4j.collection.list.linked;
+package ru.job4j.linked;
+
+import ru.job4j.linked.List;
 
 import java.util.*;
 

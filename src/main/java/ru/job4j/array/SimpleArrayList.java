@@ -1,4 +1,4 @@
-package ru.job4j.collection.list.array;
+package ru.job4j.array;
 
 import java.util.*;
 

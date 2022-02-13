@@ -4,7 +4,7 @@ import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 import org.junit.Test;
-import ru.job4j.collection.list.linked.SimpleQueue;
+import ru.job4j.linked.SimpleQueue;
 
 import java.util.NoSuchElementException;
 

@@ -1,6 +1,4 @@
-package ru.job4j.linked;
-
-import ru.job4j.linked.ForwardLinked;
+package ru.job4j.list.linked;
 
 public class SimpleStack<T> {
 

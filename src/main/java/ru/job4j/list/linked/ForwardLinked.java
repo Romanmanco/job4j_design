@@ -1,4 +1,4 @@
-package ru.job4j.linked;
+package ru.job4j.list.linked;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

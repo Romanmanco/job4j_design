@@ -4,7 +4,7 @@ import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 import org.junit.Test;
-import ru.job4j.linked.SimpleStack;
+import ru.job4j.list.linked.SimpleStack;
 
 public class SimpleStackTest {
 

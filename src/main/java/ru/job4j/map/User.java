@@ -1,26 +1,25 @@
 package ru.job4j.map;
 
-import java.util.*;
+import java.util.Calendar;
+import java.util.Objects;
 
 public class User {
     private String name;
     private int children;
     private Calendar birthday;
 
-    public User(String name, int children, Calendar birthday) {
-        this.name = name;
-        this.children = children;
-        this.birthday = birthday;
-    }
-
-    public static void main(String[] args) {
-        User user1 = new User("Роман", 1, new GregorianCalendar(2020, Calendar.JUNE, 15, 12, 1, 10));
-        User user2 = new User("Роман", 1, new GregorianCalendar(2020, Calendar.JUNE, 15, 12, 1, 10));
-
-        Map<User, Object> userMap = new HashMap<>();
-        userMap.put(user1, new Object());
-        userMap.put(user2, new Object());
-        userMap.forEach((user, o) -> System.out.println("Key: " + user + " Value: " + o));
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        User user = (User) o;
+        return children == user.children
+                && name.equals(user.name)
+                && birthday.equals(user.birthday);
     }
 
     /**
@@ -29,4 +28,10 @@ public class User {
         return Objects.hash(name, children, birthday);
     }
     */
+
+    public User(String name, int children, Calendar birthday) {
+        this.name = name;
+        this.children = children;
+        this.birthday = birthday;
+    }
 }

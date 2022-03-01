@@ -29,7 +29,7 @@ public class SimpleMapTest {
     @Test
     public void thenExpand() {
         Map<String, Integer> map = new SimpleMap<>();
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < 8; i++) {
             assertTrue(map.put("test" + i, i));
         }
     }

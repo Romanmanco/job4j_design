@@ -38,14 +38,9 @@ public class SimpleMap<K, V> implements Map<K, V> {
     }
 
     private void expand() {
-        MapEntry<K, V>[] tempTable = table;
+        System.out.println("expand begin capacity " + capacity);
         capacity *= 2;
-        table = new MapEntry[capacity];
-        for (MapEntry<K, V> mapEntry : tempTable) {
-            if (mapEntry != null) {
-                put(mapEntry.key, mapEntry.value);
-            }
-        }
+        System.out.println("expand end capacity " + capacity);
     }
 
     private int checkNull(K key) {
@@ -110,6 +105,13 @@ public class SimpleMap<K, V> implements Map<K, V> {
         public MapEntry(K key, V value) {
             this.key = key;
             this.value = value;
+        }
+    }
+
+    public static void main(String[] args) {
+        SimpleMap<Integer, Integer> sm = new SimpleMap<>();
+        for (int i = 0; i < 8; i++) {
+            sm.put(i, i);
         }
     }
 }

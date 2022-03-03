@@ -12,7 +12,7 @@ public class ConfigTest {
         String path = "./data/pair_without_comment.properties";
         Config config = new Config(path);
         config.load();
-        assertThat(config.value("name"),is("Roman"));
+        assertThat(config.value("name"), is("Roman"));
         assertThat(config.value("surname"), is(Matchers.nullValue()));
     }
 

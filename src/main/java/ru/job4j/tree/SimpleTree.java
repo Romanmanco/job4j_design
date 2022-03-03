@@ -12,10 +12,9 @@ public class SimpleTree<E> implements Tree<E> {
 
     @Override
     public boolean add(E parent, E child) {
-        boolean rsl = false;
-        if (findBy(child).isEmpty()) {
+        boolean rsl = findBy(child).isEmpty();
+        if (rsl) {
             findBy(parent).ifPresent(eNode -> eNode.children.add(new Node<>(child)));
-            rsl = true;
         }
         return rsl;
     }

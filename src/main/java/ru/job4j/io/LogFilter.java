@@ -15,13 +15,13 @@ public class LogFilter {
                     list.add(line);
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
         return list;
     }
 
-    public static void save(List<String> log, String file) {
+    public void save(List<String> log, String file) {
         try (PrintWriter out = new PrintWriter(
                 new BufferedOutputStream(
                         new FileOutputStream(file)
@@ -29,8 +29,8 @@ public class LogFilter {
             for (String str : log) {
                 out.println(str);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
     }
 

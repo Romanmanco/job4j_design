@@ -38,9 +38,17 @@ public class SimpleMap<K, V> implements Map<K, V> {
     }
 
     private void expand() {
-        System.out.println("expand begin capacity " + capacity);
-        capacity *= 2;
-        System.out.println("expand end capacity " + capacity);
+        if (count >= capacity * LOAD_FACTOR) {
+            capacity *= 2;
+            MapEntry<K, V>[] tempTable = new MapEntry[capacity];
+            for (MapEntry<K, V> entry : table) {
+                if (entry != null) {
+                    int newIndex = indexFor(hash(entry.key.hashCode()));
+                    tempTable[newIndex] = entry;
+                }
+            }
+            table = tempTable;
+        }
     }
 
     private int checkNull(K key) {

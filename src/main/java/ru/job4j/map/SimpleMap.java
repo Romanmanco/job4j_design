@@ -15,10 +15,8 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
     @Override
     public boolean put(K key, V value) {
-        if ((float) count / capacity >= LOAD_FACTOR) {
-            expand();
-        }
         boolean rsl = false;
+        expand();
         int index = checkNull(key);
         if (table[index] == null) {
             table[index] = new MapEntry<>(key, value);

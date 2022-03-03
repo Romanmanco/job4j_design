@@ -15,8 +15,8 @@ public class LogFilter {
                     list.add(line);
                 }
             }
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return list;
     }
@@ -29,8 +29,8 @@ public class LogFilter {
             for (String str : log) {
                 out.println(str);
             }
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

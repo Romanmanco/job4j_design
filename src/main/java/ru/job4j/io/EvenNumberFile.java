@@ -2,9 +2,10 @@ package ru.job4j.io;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class EvenNumberFile {
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         try (FileOutputStream out = new FileOutputStream("even.txt")) {
             var ln = System.lineSeparator();
             String[] num = {"1" + ln + "6" + ln + "15" + ln + "17"};
@@ -12,8 +13,8 @@ public class EvenNumberFile {
                 out.write(num[i].getBytes());
                 out.write(System.lineSeparator().getBytes());
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
 
         try (FileInputStream in = new FileInputStream("even.txt")) {
@@ -28,8 +29,8 @@ public class EvenNumberFile {
                     System.out.println(number);
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
     }
 }

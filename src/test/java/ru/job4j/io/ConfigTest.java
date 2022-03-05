@@ -30,4 +30,19 @@ public class ConfigTest {
         Config config = new Config(path);
         config.load();
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenPairWithoutSymbol() {
+        String path = "./data/pair_without_symbol.properties";
+        Config config = new Config(path);
+        config.load();
+    }
+
+    @Test
+    public void whenPairWithoutSecondValue() {
+        String path = "./data/pair_without_second_value.properties";
+        Config config = new Config(path);
+        config.load();
+        assertThat(config.value("key2"), is(Matchers.nullValue()));
+    }
 }

@@ -5,7 +5,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 public class Config {
 
@@ -18,20 +20,22 @@ public class Config {
 
     public void load() {
         try (BufferedReader reader = new BufferedReader(new FileReader(this.path))) {
-             String line;
-             while ((line = reader.readLine()) != null) {
-                 if (!line.startsWith("#") && line.length() > 1) {
-                     String[] strings = line.split("=");
-                     String key = strings[0];
-                     if (key.isEmpty()) {
-                         throw new IllegalArgumentException();
-                     }
-                     String value = strings[1];
-                     values.put(key, value);
-                 }
-             }
-        } catch (IOException e) {
+            Set<String> value = reader.lines()
+                    .filter(line -> !"".equals(line.trim()) && !line.startsWith("#"))
+                    .collect(Collectors.toSet());
+            for (String str : value) {
+                String[] strings = str.split("=");
+                checkLine(strings);
+                values.put(strings[0], strings[1]);
+            }
+            } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void checkLine(String[] line) throws IllegalArgumentException {
+        if (line.length < 2 || "".equals(line[0].trim())) {
+            throw new IllegalArgumentException();
         }
     }
 

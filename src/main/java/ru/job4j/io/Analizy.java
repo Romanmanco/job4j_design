@@ -10,15 +10,17 @@ public class Analizy {
             String[] startPosition = new String[2];
             String[] endPosition;
             String input = reader.readLine();
-            boolean sleepServ = input.startsWith("400") || input.startsWith("500");
+            boolean sleepServ = false;
             while (input != null && !input.isEmpty()) {
-                if (sleepServ) {
+                if (!sleepServ && (input.startsWith("400") || input.startsWith("500"))) {
                     startPosition = input.split(" ");
+                    sleepServ = true;
                 }
-                if (!sleepServ) {
+                if (sleepServ && (input.startsWith("200") || input.startsWith("300"))) {
                     endPosition = input.split(" ");
                     rsl = startPosition[1] + "; " + endPosition[1] + System.lineSeparator();
                     writer.write(rsl);
+                    sleepServ = false;
                 }
                 input = reader.readLine();
             }

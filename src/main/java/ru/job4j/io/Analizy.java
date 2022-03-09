@@ -4,25 +4,24 @@ import java.io.*;
 
 public class Analizy {
     public void unavailable(String source, String target) {
-        String rsl;
         try (BufferedReader reader = new BufferedReader(new FileReader(source));
              PrintWriter writer = new PrintWriter(new FileWriter(target))) {
-            String[] startPosition = new String[2];
-            String[] endPosition;
-            String input = reader.readLine();
-            boolean sleepServ = false;
-            while (input != null && !input.isEmpty()) {
-                if (!sleepServ && (input.startsWith("400") || input.startsWith("500"))) {
-                    startPosition = input.split(" ");
-                    sleepServ = true;
+            StringBuilder builder = new StringBuilder();
+            String value = null;
+            String position;
+            while ((position = reader.readLine()) != null) {
+                String[] values = position.split(" ");
+                if ("400".equals(values[0]) || "500".equals(values[0])) {
+                    if (!"400".equals(value) && !"500".equals(value)) {
+                        value = values[0];
+                        builder.append(values[1]).append(";");
+                    }
+                } else if ("400".equals(value) || "500".equals(value)) {
+                    value = null;
+                    builder.append(values[1]).append(";");
+                    writer.println(builder);
+                    builder.delete(0, builder.length());
                 }
-                if (sleepServ && (input.startsWith("200") || input.startsWith("300"))) {
-                    endPosition = input.split(" ");
-                    rsl = startPosition[1] + "; " + endPosition[1] + System.lineSeparator();
-                    writer.write(rsl);
-                    sleepServ = false;
-                }
-                input = reader.readLine();
             }
         } catch (IOException e) {
             e.printStackTrace();

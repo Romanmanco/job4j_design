@@ -1,4 +1,4 @@
-package ru.job4j.io.scanSystem;
+package ru.job4j.io.scansystem;
 
 import java.io.IOException;
 import java.nio.file.Files;

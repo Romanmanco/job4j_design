@@ -12,6 +12,7 @@ import java.util.function.Predicate;
 public class SearchFiles implements FileVisitor<Path> {
 
     private final Predicate<Path> condition;
+
     private final List<Path> pathList;
 
     public SearchFiles(Predicate<Path> condition) {

@@ -1,9 +1,7 @@
 package ru.job4j.io;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ArgsName {
 
@@ -14,27 +12,30 @@ public class ArgsName {
     }
 
     private void parse(String[] args) {
-        validate(args);
-        values = Arrays.stream(args)
-                .map(el -> el.substring(1).split("=", 2))
-                .collect(Collectors.toMap(k -> k[0], v -> v[1]));
+        checkEmpty(args.length);
+        for (String str : args) {
+            checkEquals(str);
+            int start = str.indexOf("=");
+            checkValue(str, start);
+            values.put(str.substring(1, start), str.substring(start + 1));
+        }
     }
 
-    private void validate(String[] args) {
-        if (args == null) {
-            throw new IllegalArgumentException("Parameter not found.");
+    private void checkValue(String str, int start) {
+        if (str.substring(start + 1).length() == 0) {
+            throw new IllegalArgumentException("Value is empty.");
         }
-        for (String arg : args) {
-            if (arg.indexOf("-") != 0) {
-                throw new IllegalArgumentException("Args must start from -");
-            }
-            String[] el = arg.substring(1).split("=", 2);
-            if (el.length != 2 || "".equals(el[0]) || "".equals(el[1])) {
-                throw new IllegalArgumentException("Args must be this format: '-SOME_NAME=SOME_VALUE'");
-            }
-            if ((el[0] + el[1]).length() == 0) {
-                throw new IllegalArgumentException();
-            }
+    }
+
+    private void checkEquals(String str) {
+        if (!str.contains("=")) {
+            throw new IllegalArgumentException("Every parameter should have sign equals.");
+        }
+    }
+
+    private void checkEmpty(int len) {
+        if (len == 0) {
+            throw new IllegalArgumentException("Parameter is empty.");
         }
     }
 

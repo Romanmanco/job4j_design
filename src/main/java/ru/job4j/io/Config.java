@@ -24,7 +24,7 @@ public class Config {
                     .filter(line -> !"".equals(line.trim()) && !line.startsWith("#"))
                     .collect(Collectors.toSet());
             for (String str : value) {
-                String[] strings = str.split("=");
+                String[] strings = str.split("=", 2);
                 checkLine(strings);
                 values.put(strings[0], strings[1]);
             }

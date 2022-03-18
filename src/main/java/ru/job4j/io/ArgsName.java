@@ -16,6 +16,7 @@ public class ArgsName {
         for (String str : args) {
             checkEquals(str);
             int start = str.indexOf("=");
+            checkKey(str, start);
             checkValue(str, start);
             values.put(str.substring(1, start), str.substring(start + 1));
         }
@@ -36,6 +37,12 @@ public class ArgsName {
     private void checkEmpty(int len) {
         if (len == 0) {
             throw new IllegalArgumentException("Parameter is empty.");
+        }
+    }
+
+    private void checkKey(String str, int start) {
+        if (str.substring(start).isEmpty()) {
+            throw new IllegalArgumentException("Key not exist.");
         }
     }
 

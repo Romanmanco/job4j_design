@@ -10,11 +10,14 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class Zip {
-    public static void packFiles(List<Path> sources, File target) {
+    String directory, exclude, output;
+
+    public void packFiles(List<Path> sources, File target) {
         try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target)))) {
             for (Path path : sources) {
-                try (BufferedInputStream in = new BufferedInputStream(new FileInputStream(path.toFile().getPath()))) {
-                    zip.write(in.readAllBytes());
+                zip.putNextEntry(new ZipEntry(path.toFile().getAbsolutePath()));
+                try (BufferedInputStream out = new BufferedInputStream(new FileInputStream(path.toFile()))) {
+                    zip.write(out.readAllBytes());
                 }
             }
         } catch (Exception e) {
@@ -22,50 +25,28 @@ public class Zip {
         }
     }
 
-    public static void packSingleFile(File source, File target) {
-        try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target)))) {
-            zip.putNextEntry(new ZipEntry(source.getPath()));
-            try (BufferedInputStream out = new BufferedInputStream(new FileInputStream(source))) {
-                zip.write(out.readAllBytes());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+    private void validateArgs(String[] args) {
+        String errArgs = "Wrong args. Usage: java -jar pack.jar -d=ROOT_DIRECTORY -e=EXCLUDED_FILE_EXTENSION -o=OUTPUT_FILE_NAME";
+        if (args.length != 3) {
+            throw new IllegalArgumentException(errArgs);
+        }
+        ArgsName arg = ArgsName.of(args);
+        directory = arg.get("d");
+        exclude = arg.get("e");
+        output = arg.get("o");
+        if (directory == null || exclude == null || output == null) {
+            throw new IllegalArgumentException(errArgs);
+        }
+        Path rootDir = Paths.get(directory);
+        if (!rootDir.toFile().exists() || !rootDir.toFile().isDirectory()) {
+            throw new IllegalArgumentException("Not valid arguments. Root directory is not valid.");
         }
     }
 
     public static void main(String[] args) throws IOException {
-        packSingleFile(
-                new File("./pom.xml"),
-                new File("./pom.zip")
-        );
-
-        checkValidNumber(args);
-        ArgsName.of(args);
-
-        ArgsName arguments = ArgsName.of(args);
-        String sourceDir = arguments.get("d");
-        Path sourceFile = Paths.get(sourceDir);
-
-        checkSource(sourceDir, sourceFile);
-
-        String excludedFile = arguments.get("e").startsWith(".") ? arguments.get("e") : "." + arguments.get("e");
-        String dir = arguments.get("o");
-        File file = new File(dir);
-
-        List<Path> search = Search.search(sourceFile, el -> !el.toFile().getName().endsWith(excludedFile));
-
-        packFiles(search, file);
-    }
-
-    private static void checkSource(String directory, Path file) {
-        if (directory.isEmpty() || !file.toFile().exists()) {
-            throw new IllegalArgumentException("wrong argument: " + directory + ". Path " + directory + " doesn't exist.");
-        }
-    }
-
-    private static void checkValidNumber(String[] args) {
-        if (args.length != 3) {
-            throw new IllegalArgumentException("Invalid number.");
-        }
+        Zip zip = new Zip();
+        zip.validateArgs(args);
+        List<Path> listFiles = Search.search(Paths.get(zip.directory), path -> !path.toFile().getName().endsWith(zip.exclude));
+        zip.packFiles(listFiles, new File(zip.output));
     }
 }

@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ArgsName {
-
     private Map<String, String> values = new HashMap<>();
 
     public String get(String key) {

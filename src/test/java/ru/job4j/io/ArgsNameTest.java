@@ -40,4 +40,5 @@ public class ArgsNameTest {
     public void whenNotPrefixKey() {
         ArgsName jvm = ArgsName.of(new String[] {"encoding=UTF-8"});
     }
+
 }

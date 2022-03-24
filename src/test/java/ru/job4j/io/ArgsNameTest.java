@@ -35,11 +35,9 @@ public class ArgsNameTest {
     public void whenWrongSomeArgument() {
         ArgsName jvm = ArgsName.of(new String[] {"-encoding=UTF-8", "-Xmx="});
     }
-/**
+
     @Test(expected = IllegalArgumentException.class)
-    public void whenKeyNotExist() {
-        ArgsName jvm = ArgsName.of(new String[] { "-encoding=UTF-8" });
-        jvm.get("Xmx");
+    public void whenNotPrefixKey() {
+        ArgsName jvm = ArgsName.of(new String[] {"encoding=UTF-8"});
     }
-    */
 }

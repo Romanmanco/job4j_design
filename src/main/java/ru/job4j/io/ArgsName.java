@@ -14,11 +14,18 @@ public class ArgsName {
     private void parse(String[] args) {
         checkEmpty(args.length);
         for (String str : args) {
+            checkStart(str);
             checkEquals(str);
             int start = str.indexOf("=");
             checkKey(str, start);
             checkValue(str, start);
             values.put(str.substring(1, start), str.substring(start + 1));
+        }
+    }
+
+    private void checkStart(String str) {
+        if (str.indexOf("-") != 0) {
+            throw new IllegalArgumentException("Args must start from -");
         }
     }
 

@@ -71,7 +71,7 @@ public class ConsoleChat {
         Path logPath = Paths.get(path);
         try (PrintWriter writer = new PrintWriter(new FileWriter(logPath.toFile(), StandardCharsets.UTF_8))) {
             for (String str : log) {
-                writer.write(str);
+                writer.println(str);
             }
         }
     }

@@ -33,17 +33,18 @@ public class ConsoleChat {
                 while (!STOP.equals(line) && flag) {
                     Random random = new Random();
                     int randomPhraseIndex = random.nextInt(answerList.size());
-                    String phrase = "Пользователь: " + line + "\n";
+                    String phrase = "Пользователь: " + line;
                     String pcAnswer = "Компьютер: " + answerList.get(randomPhraseIndex);
                     System.out.println(pcAnswer);
                     chat.add(phrase);
                     chat.add(pcAnswer);
-                    chat.add(System.lineSeparator());
                     line = reader.readLine();
                     if (STOP.equals(line)) {
                         flag = false;
+                        chat.add("Пользователь: " + line);
                     }
                     if (OUT.equals(line)) {
+                        chat.add("Пользователь: " + line);
                         saveLog(chat);
                         return;
                     }

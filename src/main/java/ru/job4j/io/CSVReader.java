@@ -3,7 +3,6 @@ package ru.job4j.io;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringJoiner;
 
@@ -65,7 +64,14 @@ public class CSVReader {
         }
     }
 
+    private static void checkArgs(String[] args) {
+        if (args.length != 4) {
+            throw new IllegalArgumentException("Number must be equals 4");
+        }
+    }
+
     public static void main(String[] args) throws Exception {
+        checkArgs(args);
         ArgsName arg = ArgsName.of(args);
         handle(arg);
     }

@@ -26,7 +26,8 @@ public class UsageLog4j {
         long longValue = 144999;
         float floatValue = 235.6f;
         double doubleValue = 65.4;
-        LOG.debug("User info name : {}, age : {}, male : {}, charValue : {}, shortValue : {}, longValue : {}, floatValue : {}, doubleValue : {}",
-                name, age, male, charValue, shortValue, longValue, floatValue, doubleValue);
+        byte byteValue = 3;
+        LOG.debug("User info name : {}, age : {}, male : {}, charValue : {}, shortValue : {}, longValue : {}, floatValue : {}, doubleValue : {}, byteValue : {}",
+                name, age, male, charValue, shortValue, longValue, floatValue, doubleValue, byteValue);
     }
 }

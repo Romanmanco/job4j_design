@@ -4,21 +4,22 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class Identificator {
-    @XmlAttribute
-    private String id;
+public class Contact {
 
-    public Identificator() {
+    @XmlAttribute
+    private String phone;
+
+    public Contact() {
     }
 
-    public Identificator(String id) {
-        this.id = id;
+    public Contact(String phone) {
+        this.phone = phone;
     }
 
     @Override
     public String toString() {
-        return "Identification{"
-                + "id='" + id + '\''
+        return "Contact{"
+                + "phone='" + phone + '\''
                 + '}';
     }
 }

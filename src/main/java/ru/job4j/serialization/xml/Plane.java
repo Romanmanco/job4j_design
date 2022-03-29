@@ -1,14 +1,26 @@
 package ru.job4j.serialization.xml;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Arrays;
 
+@XmlRootElement(name = "plane")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Plane {
 
-    private final boolean isFly;
-    private final int price;
-    private final String color;
-    private final Identificator id;
-    private final String[] statuses;
+    @XmlAttribute
+    private  boolean isFly;
+
+    @XmlAttribute
+    private int price;
+    private String color;
+    private Identificator id;
+    private String[] statuses;
+
+    public Plane() {
+    }
 
     public Plane(boolean isFly, int price, String color, Identificator id, String... statuses) {
         this.isFly = isFly;

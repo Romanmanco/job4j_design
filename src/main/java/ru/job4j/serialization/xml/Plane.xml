@@ -1,0 +1,9 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<plane isFly="false" price="1000" color="yellow">
+    <identificator id="123">
+        <statuses>
+            <status>flying</status>
+            <status>chilling</status>
+        </statuses>
+    </identificator>
+</plane>

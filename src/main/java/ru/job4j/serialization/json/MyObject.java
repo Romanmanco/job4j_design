@@ -1,5 +1,7 @@
 package ru.job4j.serialization.json;
 
+import org.json.JSONPropertyIgnore;
+
 import java.util.Arrays;
 
 public class MyObject {
@@ -13,6 +15,22 @@ public class MyObject {
         this.cost = cost;
         this.id = id;
         this.action = action;
+    }
+
+    public boolean isActivity() {
+        return activity;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public Identificator getId() {
+        return id;
+    }
+
+    public String[] getAction() {
+        return action;
     }
 
     @Override

@@ -20,7 +20,7 @@ public class MyObject {
         return "Object{"
                 + "activity = " + activity
                 + ", cost = " + cost
-                + ", identification = " + id
+                + ",id = " + id
                 + ", action = " + Arrays.toString(action)
                 + '}';
     }

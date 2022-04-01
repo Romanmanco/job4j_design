@@ -8,7 +8,7 @@ public class Identificator {
     }
     @Override
     public String toString() {
-        return "Identification{"
+        return "Id{"
                 + "id='" + id + '\''
                 + '}';
     }

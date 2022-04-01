@@ -13,8 +13,8 @@ public class Main {
 
         final String objJson =
                 "{"
-                        + "\"activity \": true,"
-                        + "\"cost \": 2500,"
+                        + "\"activity\": true,"
+                        + "\"cost\": 2500,"
                         + "\"id\":"
                         + "{"
                         + "\"id\":\"12345\""

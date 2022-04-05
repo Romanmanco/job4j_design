@@ -1,37 +1,37 @@
-create table user1(
+create table user_one (
 id serial primary key,
-username text
+username text,
+user_role text references role(rolename)
 );
 
-create table user_role (
+create table role (
 id serial primary key,
-rolename text,
-user_id int references user1(id)
+role_name text,
+role_rules text references rules(rule_name)
 );
 
-create table role_rules (
+create table rules (
 id serial primary key,
-user_name text references user1(username),
-rule_name text references user_role(rolename)
+rule_name text
 );
 
 create table items (
 id serial primary key,
-creator text references user1(username),
-items_comment text references comments(comment),
-items_attaches text references attaches(attach),
+creator text references user_one(username),
+items_comment text,
+items_attaches text,
 items_category text references categories(category),
 items_state text references status(status)
 );
 
 create table comments (
 id serial primary key,
-comment text
+comment text references items(items_comment)
 );
 
 create table attaches (
 id serial primary key,
-attach text
+attach text references items(items_attaches)
 );
 
 create table categories (

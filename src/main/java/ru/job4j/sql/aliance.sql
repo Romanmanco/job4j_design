@@ -36,4 +36,4 @@ on pp.ticket_id = p.id;
 select pp.name_film as Название, p.cost as Цена
 from ticket_cinema as pp
 join ticket_cinema as p
-on pp.cost = p."cost";
+on pp.cost = p.cost;

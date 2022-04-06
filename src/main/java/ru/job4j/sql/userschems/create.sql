@@ -33,18 +33,18 @@ role_rules int references rules(id)
 create table items (
 id serial primary key,
 creator int references user_one(id),
-items_comment text,
-items_attaches text,
 items_category int references categories(id),
 items_state int references status(id)
 );
 
 create table comments (
-id serial references items(id),
-comment int references items(id)
+id serial primary key,
+description text,
+item_id int references items(id)
 );
 
 create table attaches (
-id serial references items(id),
-attach int references items(id)
+id serial primary key,
+description text,
+item_id int references items(id)
 );

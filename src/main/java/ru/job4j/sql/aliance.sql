@@ -6,8 +6,8 @@ cost int
 
 create table visitors_cinema (
 id serial primary key,
-name varchar(255),
-ticket_id int references ticket_cinema(id) unique
+"name" varchar(255),
+ticket_id int references ticket_cinema(id)
 );
 
 select * from ticket_cinema;

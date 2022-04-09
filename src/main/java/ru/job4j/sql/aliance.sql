@@ -33,7 +33,7 @@ p.cost as Номер from visitors_cinema as pp
 join ticket_cinema as p
 on pp.ticket_id = p.id;
 
-select pp.name_film as Название, p.cost as Цена
+select pp.name_film as Название, p.ticket_id as Идентификатор
 from ticket_cinema as pp
-join ticket_cinema as p
-on pp.cost = p.cost;
+join visitors_cinema as p
+on pp.id = p.ticket_Id;

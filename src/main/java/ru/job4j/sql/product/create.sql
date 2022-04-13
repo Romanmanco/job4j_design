@@ -12,31 +12,26 @@ value int,
 price int
 );
 
-select * from type_prod where name_type = 'СЫР';
+select * from product p
+join type_prod t
+on p.type_id = t.id
+where t.name_type = 'СЫР'; 1
 
-select * from product where name_product like '%мороженое%';
+select * from product where name_product like '%мороженое%'; 2
 
-select * from product where expired_date < current_date;
+select * from product where expired_date < current_date; 3
 
-select max(price) as Максилмальная_цена
-from product;
+select * from product p where p.price = (select max(price) from product); 4
 
-select s.name_type as Тип, ss.value as Остаток
-from product as ss
-join type_prod s
-on ss.type_id = s.id
-group by s.name_type, ss.value;
+select name_type as Имя_типа, count(*) as Количество_продуктов
+from product p left join type_prod t
+on p.type_id = t.id
+group by name_type; 5
 
-select s.name_type as Тип, ss.name_product as Наименование
-from product as ss
-join type_prod s
-on ss.type_id = s.id
-group by s.name_type, ss.name_product;
+select * from product where type_id = 1 or type_id = 2;
 
-
-select s.name_type as Тип, sum(value) as Остаток
-from product as ss
-join type_prod s
-on ss.type_id = s.id
-group by s.name_type, ss.value
-having sum(ss.value) < 10;
+select name_type as Имя_типа, count(*) as Количество_продуктов
+from product p left join type_prod t
+on p.type_id = t.id
+group by name_type
+having count(*) < 10;

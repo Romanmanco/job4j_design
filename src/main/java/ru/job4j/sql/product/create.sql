@@ -15,23 +15,31 @@ price int
 select * from product p
 join type_prod t
 on p.type_id = t.id
-where t.name_type = 'СЫР'; 1
+where t.name_type = 'СЫР';
 
-select * from product where name_product like '%мороженое%'; 2
+select * from product where name_product like '%мороженое%';
 
-select * from product where expired_date < current_date; 3
+select * from product where expired_date < current_date;
 
-select * from product p where p.price = (select max(price) from product); 4
+select * from product p where p.price = (select max(price) from product);
 
 select name_type as Имя_типа, count(*) as Количество_продуктов
 from product p left join type_prod t
 on p.type_id = t.id
-group by name_type; 5
+group by name_type;
 
-select * from product where type_id = 1 or type_id = 2;
+select * from product p
+join type_prod t
+on p.type_id = t.id
+where t.name_type = 'СЫР' or t.name_type = 'МОЛОКО';
 
 select name_type as Имя_типа, count(*) as Количество_продуктов
 from product p left join type_prod t
 on p.type_id = t.id
 group by name_type
 having count(*) < 10;
+
+select * from product p
+join type_prod t
+on p.type_id = t.id;
+

@@ -13,8 +13,3 @@ select * from transmission;
 insert into car("name", body_car_id, engine_id, transmission_id)
 values ('Машина 1', 1, 1, 1), ('Машина 2', 1, 3, 4), ('Машина 3', 3, 1, null), ('Машина 4', null, 1, null), ('Машина 5', 2, null, null);
 select * from car;
-
-drop table body_car;
-drop table engine;
-drop table transmission;
-drop table car;

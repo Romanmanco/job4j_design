@@ -10,11 +10,22 @@ import java.sql.SQLException;
 public class ConnectionDemo {
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        Class.forName("org.postgresql.Driver");
-        try (Connection connection = DriverManager.getConnection(String.valueOf(new Config("./app.properties")))) {
-            DatabaseMetaData metaData = connection.getMetaData();
-            System.out.println(metaData.getUserName());
-            System.out.println(metaData.getURL());
+        Config config = new Config("app.properties");
+        config.load();
+        try {
+            Class.forName(config.value("driver"));
+            System.out.println("Driver connected");
+            String url = config.value("url");
+            String login = config.value("username");
+            String password = config.value("password");
+            try (Connection connect = DriverManager.getConnection(url, login, password)) {
+                System.out.println("Database connection established");
+                DatabaseMetaData metaData = connect.getMetaData();
+                System.out.println(metaData.getUserName());
+                System.out.println(metaData.getURL());
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
         }
     }
 }

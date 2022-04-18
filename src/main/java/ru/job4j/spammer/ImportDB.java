@@ -46,14 +46,14 @@ public class ImportDB {
     }
 
     public void save(List<User> users) throws ClassNotFoundException, SQLException {
-        Class.forName(cfg.getProperty("jdbc.driver"));
+        Class.forName(cfg.getProperty("driver"));
         try (Connection cnt = DriverManager.getConnection(
-                cfg.getProperty("jdbc.url"),
-                cfg.getProperty("jdbc.username"),
-                cfg.getProperty("jdbc.password")
+                cfg.getProperty("url"),
+                cfg.getProperty("username"),
+                cfg.getProperty("password")
         )) {
             for (User user : users) {
-                try (PreparedStatement ps = cnt.prepareStatement("insert into users ...")) {
+                try (PreparedStatement ps = cnt.prepareStatement( "insert into users (name, email) values (?, ?);")) {
                     ps.setString(1, user.name);
                     ps.setString(2, user.email);
                     ps.execute();
@@ -75,10 +75,10 @@ public class ImportDB {
 
     public static void main(String[] args) throws Exception {
         Properties cfg = new Properties();
-        try (FileInputStream in = new FileInputStream("./app.properties")) {
+        try (FileInputStream in = new FileInputStream("C:/projects/job4j_design/src/main/java/resources/app.properties")) {
             cfg.load(in);
         }
-        ImportDB db = new ImportDB(cfg, "./dump.txt");
+        ImportDB db = new ImportDB(cfg, "C:/projects/job4j_design/src/main/java/resources/dump.txt");
         db.save(db.load());
     }
 }

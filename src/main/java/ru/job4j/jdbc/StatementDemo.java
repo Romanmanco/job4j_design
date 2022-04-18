@@ -9,9 +9,9 @@ public class StatementDemo {
     private static Connection getConnection() throws Exception {
         Class.forName("org.postgresql.Driver");
         String url = "jdbc:postgresql://localhost:5432/idea_db";
-        String login = "postgres";
+        String username = "postgres";
         String password = "password";
-        return DriverManager.getConnection(url, login, password);
+        return DriverManager.getConnection(url, username, password);
     }
 
     public static void main(String[] args) throws Exception {
@@ -46,5 +46,4 @@ public class StatementDemo {
         }
         return buffer.toString();
     }
-
 }

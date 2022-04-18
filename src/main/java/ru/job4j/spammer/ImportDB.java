@@ -75,10 +75,10 @@ public class ImportDB {
 
     public static void main(String[] args) throws Exception {
         Properties cfg = new Properties();
-        try (FileInputStream in = new FileInputStream("C:/projects/job4j_design/src/main/java/resources/app.properties")) {
+        try (FileInputStream in = new FileInputStream("./src/main/java/resources/app.properties")) {
             cfg.load(in);
         }
-        ImportDB db = new ImportDB(cfg, "C:/projects/job4j_design/src/main/java/resources/dump.txt");
+        ImportDB db = new ImportDB(cfg, "./src/main/java/resources/dump.txt");
         db.save(db.load());
     }
 }

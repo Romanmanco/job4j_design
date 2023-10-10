@@ -1,15 +1,14 @@
 package ru.job4j.iterator;
 
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
-
 import org.junit.Test;
-import ru.job4j.iterator.FlatMap;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.*;
 
 public class FlatMapTest {
     @Test
@@ -58,7 +57,7 @@ public class FlatMapTest {
     @Test(expected = NoSuchElementException.class)
     public void whenEmpty() {
         Iterator<Iterator<Object>> data = List.of(
-                List.of().iterator()
+                Collections.emptyIterator()
         ).iterator();
         FlatMap<Object> flat = new FlatMap<>(data);
         flat.next();
@@ -67,9 +66,9 @@ public class FlatMapTest {
     @Test
     public void whenSeveralEmptyAndNotEmpty() {
         Iterator<Iterator<?>> it = List.of(
-                List.of().iterator(),
-                List.of().iterator(),
-                List.of().iterator(),
+                Collections.emptyIterator(),
+                Collections.emptyIterator(),
+                Collections.emptyIterator(),
                 List.of(1).iterator()
         ).iterator();
         FlatMap flat = new FlatMap(it);
@@ -80,10 +79,10 @@ public class FlatMapTest {
     @Test
     public void whenSeveralEmptyThenReturnFalse() {
         Iterator<Iterator<Object>> it = List.of(
-                List.of().iterator(),
-                List.of().iterator(),
-                List.of().iterator(),
-                List.of().iterator()
+                Collections.emptyIterator(),
+                Collections.emptyIterator(),
+                Collections.emptyIterator(),
+                Collections.emptyIterator()
         ).iterator();
         FlatMap flat = new FlatMap(it);
         assertFalse(flat.hasNext());

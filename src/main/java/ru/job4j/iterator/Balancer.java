@@ -7,11 +7,15 @@ import java.util.List;
 public class Balancer {
     public static void split(List<ArrayList<Integer>> nodes, Iterator<Integer> source) {
         int numNodes = nodes.size();
+        int index = 0;
 
         while (source.hasNext()) {
             Integer item = source.next();
-            int index = Math.abs(item.hashCode()) % numNodes;
-            nodes.get(index).add(item);
+            nodes.get(index++).add(item);
+
+            if (index >= numNodes) {
+                index = 0;
+            }
         }
     }
 }

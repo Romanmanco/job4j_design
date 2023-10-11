@@ -29,6 +29,6 @@ public class Analizy {
     }
 
     public static void main(String[] args) {
-            new Analizy().unavailable("./serverLog.txt", "./unavailable.csv");
+            new Analizy().unavailable("./src/data/serverLog.txt", "./src/data/unavailable.csv");
         }
     }
